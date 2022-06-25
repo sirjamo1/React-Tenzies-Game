@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
+* {
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;    
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.main--container {
+  background-color: #0B2434;
+  width: 360px;
+height: 379px;
+display: flex;
+justify-content: center;
+align-items: center;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.tenzies--container {
+  width: 320px;
+height: 320px;
+background-color: #F5F5F5;
+border-radius: 10px;
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
 }
+.text--content {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  width: 230px;
 
-.App-link {
-  color: #61dafb;
 }
+.text--content > h1 {
+font-family: 'Karla';
+font-size: 25.6px;
+line-height: 30px;
+letter-spacing: -0.03em;
+margin-bottom: 0px;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.text--content > h4 {
+  margin-top: 0px;
+font-family: 'Inter';
+font-weight: 400;
+font-size: 13px;
+letter-spacing: -0.03em;
+}
+.button--container {
+
+}
+.button--one-five>button, 
+.button--six-ten>button{
+  border: none;
+  background-color: white;
+  width: 35.84px;
+height: 35.84px;
+margin: 10px;
+font-family: 'Karla';
+font-size: 20px;
+color: #2B283A;
+
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+border-radius: 4px;
+}
+/*👉.button--one-five>button, //after click background-color
+.button--six-ten>button{
+background: #59E391;
+}👈*/
+.button--roll {
+  width: 92.16px;
+height: 35.84px;
+font-family: 'Karla';
+font-weight: 700;
+font-size: 16.384px;
+color: white;
+background-color: rgb(55, 55, 244);
+border: none;
+border-radius: 4px;
+margin-top: 15px;
 }
