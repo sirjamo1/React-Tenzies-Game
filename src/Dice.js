@@ -1,23 +1,40 @@
 import React from "react";
+import dice1 from "./img/dice1.png";
+import dice2 from "./img/dice2.png";
+import dice3 from "./img/dice3.png";
+import dice4 from "./img/dice4.png";
+import dice5 from "./img/dice5.png";
+import dice6 from "./img/dice6.png";
 
 export default function Dice(props) {
-  return <h2>{props.value}</h2>;
+  const styles = {
+    boxShadow: props.isHeld
+      ? "0px 0px 10px 6px rgba(89,227,145,0.75)"
+      : "#f5f5f5",
+  };
+
+  function diceSelector() {
+    if (props.value == 1) {
+      return dice1;
+    } else if (props.value == 2) {
+      return dice2;
+    } else if (props.value == 3) {
+      return dice3;
+    } else if (props.value == 4) {
+      return dice4;
+    } else if (props.value == 5) {
+      return dice5;
+    } else {
+      return dice6;
+    }
+  }
+
+  return (
+    <div
+      onClick={props.holdDice}
+      // className="dice--face"
+    >
+      <img style={styles} className="dice--images" src={diceSelector()} />
+    </div>
+  );
 }
-
-//OLD CODE
-
-// <div className="button--one-five">
-//     <button className="dice--one">1</button>
-//     <button className="dice--two">2</button>
-//     <button className="dice--three">3</button>
-//     <button className="dice--four">4</button>
-//     <button className="dice--five">5</button>
-//   </div>
-//   <div className="button--six-ten">
-//     <button className="dice--six">6</button>
-//     <button className="dice--seven">7</button>
-//     <button className="dice--eight">8</button>
-//     <button className="dice--nine">9</button>
-//     <button className="dice--ten">10</button>
-//   </div>
-//   

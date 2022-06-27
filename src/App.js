@@ -1,34 +1,120 @@
 import React from "react";
 import "./App.css";
 import Dice from "./Dice";
+import { nanoid } from "nanoid";
+import Confetti from "react-confetti";
 
 function App() {
   const [diceState, setDiceState] = React.useState(allNewDice());
-  function rollDice(){
-    setDiceState(prevDiceState => prevDiceState = allNewDice())
+  const [tenziesState, setTenziesState] = React.useState(false);
+  const [rollCountState, setRollCountState] = React.useState(0);
+  const [startTimeState, setStartTimeState] = React.useState(0);
+  const [stopTimeState, setStopTimeState] = React.useState(0);
+  const confetti = tenziesState ? <Confetti /> : "";
+  const playAgain = tenziesState ? "New Game?" : "Roll";
+
+  const timer = tenziesState
+    ? Math.round((stopTimeState - startTimeState) / 1000)
+    : 0;
+
+  function startTimer() {
+    if (rollCountState === 0) {
+      setStartTimeState(new Date().getTime());
+      setStopTimeState(0);
+    }
   }
-  const diceMapped = diceState.map((die) => <Dice value={die} />);
+  function stopTimer() {
+    setStopTimeState(new Date().getTime());
+  }
+  console.log({ startTimeState });
+  console.log({ stopTimeState });
+  console.log({ timer });
+
+  React.useEffect(() => {
+    // assign die number 1 for control
+    const firstDieValue = diceState[0].value;
+    // is only assigned if every dice is held
+    const isHeld = diceState.every((die) => die.isHeld);
+    // is only assigned if every die.value is the same as firstDieValue
+    const everyDieTheSame = diceState.every(
+      (die) => die.value == firstDieValue
+    );
+    // if both are assigned (true) run code
+    if (isHeld && everyDieTheSame) {
+      setTenziesState(true);
+      stopTimer();
+    }
+  }, [diceState]);
+
+  function rollDice() {
+    if (tenziesState) {
+      setTenziesState(false);
+      setDiceState(allNewDice());
+      setRollCountState(0);
+    } else {
+      setRollCountState((prevRollCountState) => (prevRollCountState += 1));
+      setDiceState((prevDiceState) =>
+        prevDiceState.map((die) => {
+          return die.isHeld === true
+            ? die
+            : {
+                value: Math.ceil(Math.random() * 6),
+                isHeld: false,
+                id: nanoid(),
+              };
+        })
+      );
+    }
+  }
+
+  const diceMapped = diceState.map((die) => (
+    <Dice
+      key={die.id}
+      value={die.value}
+      isHeld={die.isHeld}
+      holdDice={() => holdDice(die.id)}
+    />
+  ));
+  function holdDice(id) {
+    startTimer();
+    setDiceState((prevDiceState) =>
+      prevDiceState.map((die) => {
+        return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
+      })
+    );
+  }
   function allNewDice() {
     const diceArray = [];
     for (let i = 0; i < 10; i++) {
-      diceArray.push(Math.ceil(Math.random() * 6));
+      diceArray.push({
+        value: Math.ceil(Math.random() * 6),
+        isHeld: false,
+        id: nanoid(),
+      });
     }
     return diceArray;
   }
-  console.log(diceState);
 
   return (
     <main className="main--container">
+      {confetti}
       <div className="tenzies--container">
         <div className="text--content">
           <h1>Tenzies</h1>
+
           <h4>
             Roll until all dice are the same. Click each die to freeze it at
             it's current value between rolls.
           </h4>
         </div>
         <div className="dice--container">{diceMapped}</div>
-        <button onClick={rollDice} className="button--roll">Roll</button>
+        <button onClick={rollDice} className="button--roll">
+          {playAgain}
+        </button>
+        <div className="count--container">
+          <p className="roll--count">Time : {timer} s</p>
+          <p className="roll--count"> Roll Number : {rollCountState}</p>
+        </div>
       </div>
     </main>
   );
