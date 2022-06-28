@@ -10,7 +10,7 @@ export default function Dice(props) {
   const styles = {
     boxShadow: props.isHeld
       ? "0px 0px 10px 6px rgba(89,227,145,0.75)"
-      : "#f5f5f5",
+      : "0px 0px 0px 0px rgba(0,0,0,0)",
   };
 
   function diceSelector() {

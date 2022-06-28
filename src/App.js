@@ -10,12 +10,12 @@ function App() {
   const [rollCountState, setRollCountState] = React.useState(0);
   const [startTimeState, setStartTimeState] = React.useState(0);
   const [stopTimeState, setStopTimeState] = React.useState(0);
+
   const confetti = tenziesState ? <Confetti /> : "";
   const playAgain = tenziesState ? "New Game?" : "Roll";
-
   const timer = tenziesState
     ? Math.round((stopTimeState - startTimeState) / 1000)
-    : 0;
+    : "?";
 
   function startTimer() {
     if (rollCountState === 0) {
@@ -31,15 +31,11 @@ function App() {
   console.log({ timer });
 
   React.useEffect(() => {
-    // assign die number 1 for control
     const firstDieValue = diceState[0].value;
-    // is only assigned if every dice is held
     const isHeld = diceState.every((die) => die.isHeld);
-    // is only assigned if every die.value is the same as firstDieValue
     const everyDieTheSame = diceState.every(
       (die) => die.value == firstDieValue
     );
-    // if both are assigned (true) run code
     if (isHeld && everyDieTheSame) {
       setTenziesState(true);
       stopTimer();
@@ -76,7 +72,9 @@ function App() {
     />
   ));
   function holdDice(id) {
-    startTimer();
+    if (diceState.every((die) => die.isHeld == false)) {
+      startTimer();
+    }
     setDiceState((prevDiceState) =>
       prevDiceState.map((die) => {
         return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
