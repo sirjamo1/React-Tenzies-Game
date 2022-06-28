@@ -161,20 +161,3 @@ function App() {
 }
 
 export default App;
-
-// console.log({ startTimeState });
-// console.log({ stopTimeState });
-// console.log({ timer });
-// console.log(topScoreState);
-
-//setTimerState(Math.round((stopTimeState - startTimeState) / 1000)
-// )
-
-//       setTopScoreState((prevTopScoreState) => ({
-//         time: prevTopScoreState.time === 0 || prevTopScoreState.time > timer
-// 						? timer
-// 						: prevTopScoreState.time,
-//         rolls: prevTopScoreState.rolls === 0 || prevTopScoreState.rolls > rollCountState
-// 						? rollCountState
-// 						: prevTopScoreState.rolls,
-// }));   localStorage.setItem('topScoreState', JSON.stringify(topScoreState));
