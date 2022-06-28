@@ -10,15 +10,15 @@ function App() {
   const [rollCountState, setRollCountState] = React.useState(0);
   const [startTimeState, setStartTimeState] = React.useState(0);
   const [stopTimeState, setStopTimeState] = React.useState(0);
-  const [topScoreState, setTopScoreState] = React.useState({
-    time: 0,
-    rolls: 0
-  })
-  const [timerState, setTimerState] = React.useState(0)
-
+  const [topScoreState, setTopScoreState] = React.useState(
+    JSON.parse(localStorage.getItem("topScoreState")) || {
+      time: 0,
+      rolls: 0,
+    }
+  );
   const confetti = tenziesState ? <Confetti /> : "";
   const playAgain = tenziesState ? "New Game?" : "Roll";
-  
+
   const timer = tenziesState
     ? Math.round((stopTimeState - startTimeState) / 1000)
     : 0;
@@ -32,9 +32,6 @@ function App() {
   function stopTimer() {
     setStopTimeState(new Date().getTime());
   }
-  console.log({ startTimeState });
-  console.log({ stopTimeState });
-  console.log({ timer });
 
   React.useEffect(() => {
     const firstDieValue = diceState[0].value;
@@ -45,20 +42,39 @@ function App() {
     if (isHeld && everyDieTheSame) {
       setTenziesState(true);
       stopTimer();
-
-      setTopScoreState((prevTopScoreState) => ({
-        time: prevTopScoreState.time === 0 || prevTopScoreState.time > timer
-						? timer
-						: prevTopScoreState.time,
-        rolls: prevTopScoreState.rolls === 0 || prevTopScoreState.rolls > rollCountState
-						? rollCountState
-						: prevTopScoreState.rolls, 
-
-  ////////////////////////////////////////////////////////////need to fix this
-}))
     }
   }, [diceState]);
-console.log(topScoreState)
+  React.useEffect(() => {
+    if (
+      (timer < topScoreState.time && timer !== 0) ||
+      topScoreState.time == 0
+    ) {
+      setTopScoreState((prevTopScoreState) => ({
+        ...prevTopScoreState,
+        time:
+          prevTopScoreState.time === 0 || prevTopScoreState.time > timer
+            ? timer
+            : prevTopScoreState.time,
+      }));
+    }
+
+    if (
+      (rollCountState < topScoreState.rolls && rollCountState !== 0) ||
+      topScoreState.rolls == 0
+    ) {
+      setTopScoreState((prevTopScoreState) => ({
+        ...prevTopScoreState,
+        rolls:
+          prevTopScoreState.rolls === 0 ||
+          prevTopScoreState.rolls > rollCountState
+            ? rollCountState
+            : prevTopScoreState.rolls,
+      }));
+    }
+
+    localStorage.setItem("topScoreState", JSON.stringify(topScoreState));
+  }, [!tenziesState]);
+
   function rollDice() {
     if (tenziesState) {
       setTenziesState(false);
@@ -114,10 +130,16 @@ console.log(topScoreState)
     <main className="main--container">
       {confetti}
       <div className="tenzies--container">
+        <div className="highscore">
+          <p className="highscore--title">Highscores</p>
+          <p className="highscore--stats">
+            Quickest Time : {topScoreState.time}'s
+          </p>{" "}
+          <p className="highscore--stats">
+            Least Rolls : {topScoreState.rolls}
+          </p>
+        </div>
         <div className="text--content">
-          <div className="highscore">
-            <p>Highscore Rolls : {topScoreState.rolls}</p>
-          </div>
           <h1>Tenzies</h1>
 
           <h4>
@@ -130,7 +152,7 @@ console.log(topScoreState)
           {playAgain}
         </button>
         <div className="count--container">
-          <p className="roll--count">Time : {timer} s</p>
+          <p className="roll--count">Time Taken : {timer}'s</p>
           <p className="roll--count"> Roll Number : {rollCountState}</p>
         </div>
       </div>
@@ -139,3 +161,20 @@ console.log(topScoreState)
 }
 
 export default App;
+
+// console.log({ startTimeState });
+// console.log({ stopTimeState });
+// console.log({ timer });
+// console.log(topScoreState);
+
+//setTimerState(Math.round((stopTimeState - startTimeState) / 1000)
+// )
+
+//       setTopScoreState((prevTopScoreState) => ({
+//         time: prevTopScoreState.time === 0 || prevTopScoreState.time > timer
+// 						? timer
+// 						: prevTopScoreState.time,
+//         rolls: prevTopScoreState.rolls === 0 || prevTopScoreState.rolls > rollCountState
+// 						? rollCountState
+// 						: prevTopScoreState.rolls,
+// }));   localStorage.setItem('topScoreState', JSON.stringify(topScoreState));

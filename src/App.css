@@ -3,20 +3,30 @@
 }
 
 body {
+  background-image: url("./img/pexels-balázs-utasi-998679.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   margin: 0;
   display: flex;
   justify-content: center;
   height: 100vh;
   align-items: center;
+  font-family: "Karla";
 }
 
 .main--container {
-  background-color: #0b2434;
-  width: 360px;
-  height: 379px;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 92, 186, 0.4),
+    rgba(222, 193, 151, 0.4)
+  );
+
+  width: 400px;
+  height: 420px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 6px;
 }
 .tenzies--container {
   width: 320px;
@@ -27,24 +37,38 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  position: relative;
 }
+.highscore {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  align-items: flex-start;
+  left: 5px;
+  top: 5px;
+}
+.highscore--title {
+  font-weight: bold;
+  font-size: 12px;
+  margin: 1px;
+}
+.highscore--stats {
+  font-size: 0.6rem;
+  margin: 1px;
+}
+
 .text--content {
   margin-top: 0px;
   margin-bottom: 0px;
   width: 230px;
 }
-.highscore {
-  margin-bottom: -5px;
-}
-.highscore > p {
-  font-size: 0.7rem;
-}
+
 .text--content > h1 {
-  font-family: "Karla";
   font-size: 30px;
   line-height: 30px;
   letter-spacing: -0.03em;
-  margin-top: 0px;
+  margin-top: 25px;
   margin-bottom: 4px;
 }
 .text--content > h4 {
