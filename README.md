@@ -11,6 +11,8 @@
 <br />
 <h4>Page Preview</h4>
 <br />
+
 ![Alt Text](src/img/screenshot.png?raw=true "Tenzies Game")
 <br />
+
 <p>Background image by balázs utasi from www.pexels.com</p>
