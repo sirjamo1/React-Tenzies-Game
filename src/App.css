@@ -33,12 +33,19 @@ body {
   margin-bottom: 0px;
   width: 230px;
 }
+.highscore {
+  margin-bottom: -5px;
+}
+.highscore > p {
+  font-size: 0.7rem;
+}
 .text--content > h1 {
   font-family: "Karla";
   font-size: 30px;
   line-height: 30px;
   letter-spacing: -0.03em;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 4px;
 }
 .text--content > h4 {
   margin-top: 0px;
@@ -51,6 +58,7 @@ body {
 .dice--container {
   display: grid;
   grid-template: auto auto / repeat(5, 1fr);
+  margin-top: -8px;
 }
 
 .dice--images {

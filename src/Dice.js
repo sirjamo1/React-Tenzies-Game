@@ -32,7 +32,7 @@ export default function Dice(props) {
   return (
     <div
       onClick={props.holdDice}
-      // className="dice--face"
+  
     >
       <img style={styles} className="dice--images" src={diceSelector()} />
     </div>
