@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/React-Tenzies-Game/static/css/main.127553fc.css",
+    "main.js": "/React-Tenzies-Game/static/js/main.7fb4cc28.js",
+    "static/js/787.8cb7e7aa.chunk.js": "/React-Tenzies-Game/static/js/787.8cb7e7aa.chunk.js",
+    "static/media/pexels-balázs-utasi-998679.png": "/React-Tenzies-Game/static/media/pexels-balázs-utasi-998679.ae76c04dfa2c66eb91db.png",
+    "static/media/dice6.png": "/React-Tenzies-Game/static/media/dice6.7246e31a795a18a03275.png",
+    "static/media/dice5.png": "/React-Tenzies-Game/static/media/dice5.5147aae74e172be226f0.png",
+    "static/media/dice4.png": "/React-Tenzies-Game/static/media/dice4.eb056cb8fbabe83c6f4b.png",
+    "static/media/dice3.png": "/React-Tenzies-Game/static/media/dice3.53b9e55bea84fc70ba66.png",
+    "static/media/dice2.png": "/React-Tenzies-Game/static/media/dice2.4f1353356bc00a6d56a6.png",
+    "static/media/dice1.png": "/React-Tenzies-Game/static/media/dice1.21225af70093a840385d.png",
+    "index.html": "/React-Tenzies-Game/index.html",
+    "main.127553fc.css.map": "/React-Tenzies-Game/static/css/main.127553fc.css.map",
+    "main.7fb4cc28.js.map": "/React-Tenzies-Game/static/js/main.7fb4cc28.js.map",
+    "787.8cb7e7aa.chunk.js.map": "/React-Tenzies-Game/static/js/787.8cb7e7aa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.127553fc.css",
+    "static/js/main.7fb4cc28.js"
+  ]
+}
